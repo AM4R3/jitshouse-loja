@@ -3,26 +3,37 @@ import type { Config } from 'tailwindcss'
 const config: Config = {
   content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
   theme: {
-    // Bordas retas em tudo — identidade da marca.
-    borderRadius: { none: '0', DEFAULT: '0', full: '0' },
+    // Cantos de 1px, como no site principal — nunca cantos arredondados.
+    borderRadius: { none: '0', DEFAULT: '1px', full: '1px' },
     extend: {
       colors: {
-        papel: '#F3EEE3',
-        'papel-2': '#EAE2D2',
-        tinta: '#171410',
-        ouro: '#B9892F',
-        'ouro-claro': '#D2AC5C',
-        cinza: '#6E675C',
+        papel: '#F0E8D6',
+        'papel-alto': '#F7F1E4',
+        floresta: '#04211E',
+        'floresta-2': '#01100F',
+        'verde-rosa': '#004030',
+        ouro: '#C5B178',
+        areia: '#F9DA85',
+        'ouro-dia': '#935C0E',
+        'areia-sol': '#D98E3B',
+        tinta: '#1C2420',
+        'mute-papel': '#4A554F',
+        'mute-esc': '#A7BCB2',
       },
       fontFamily: {
         display: ['var(--fonte-display)', 'Georgia', 'serif'],
+        rotulo: ['var(--fonte-rotulo)', 'Arial Narrow', 'sans-serif'],
         sans: ['var(--fonte-corpo)', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
-        label: '0.1em',
+        label: '0.15em',
+        largo: '0.22em',
       },
       maxWidth: {
-        conteudo: '80rem',
+        conteudo: '1180px',
+      },
+      transitionTimingFunction: {
+        marca: 'cubic-bezier(.22,1,.36,1)',
       },
     },
   },

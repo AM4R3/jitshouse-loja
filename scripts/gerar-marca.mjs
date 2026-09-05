@@ -1,56 +1,33 @@
 /**
- * Gera OG image e favicons a partir do UNICO asset de marca permitido:
- * public/marca/logo.webp (baixado da loja atual).
- * O wordmark e chapado com alpha, entao pintamos ele em ouro-claro usando
- * o proprio alpha como mascara. Nenhuma imagem externa entra aqui.
+ * Gera OG image e favicons a partir do brasão da marca — o mesmo asset do
+ * site principal (public/marca/brasao-ouro.webp). Nenhuma imagem externa
+ * entra aqui.
  *
  *   node scripts/gerar-marca.mjs
  */
 import sharp from 'sharp'
 
-const TINTA = { r: 0x17, g: 0x14, b: 0x10, alpha: 1 }
-const OURO_CLARO = { r: 0xd2, g: 0xac, b: 0x5c, alpha: 1 }
+const FLORESTA = { r: 0x04, g: 0x21, b: 0x1e, alpha: 1 }
 
-async function logoPintado(largura) {
-  const logo = await sharp('public/marca/logo.webp')
-    .resize({ width: largura })
+async function sobreFloresta(largura, altura, tamanhoBrasao, destino) {
+  const brasao = await sharp('public/marca/brasao-ouro.webp')
+    .resize({ width: tamanhoBrasao })
     .png()
     .toBuffer()
-  const { width, height } = await sharp(logo).metadata()
 
-  return sharp({
-    create: { width, height, channels: 4, background: OURO_CLARO },
-  })
-    .composite([{ input: logo, blend: 'dest-in' }])
-    .png()
-    .toBuffer()
-}
-
-async function tile(tamanho, larguraLogo, destino) {
-  const logo = await logoPintado(larguraLogo)
   await sharp({
-    create: {
-      width: tamanho,
-      height: tamanho,
-      channels: 4,
-      background: TINTA,
-    },
+    create: { width: largura, height: altura, channels: 4, background: FLORESTA },
   })
-    .composite([{ input: logo, gravity: 'center' }])
+    .composite([{ input: brasao, gravity: 'center' }])
     .png()
     .toFile(destino)
+
   console.log('OK ' + destino)
 }
 
 // Open Graph / Twitter — 1200x630
-const og = await logoPintado(680)
-await sharp({
-  create: { width: 1200, height: 630, channels: 4, background: TINTA },
-})
-  .composite([{ input: og, gravity: 'center' }])
-  .png()
-  .toFile('app/opengraph-image.png')
-console.log('OK app/opengraph-image.png')
+await sobreFloresta(1200, 630, 400, 'app/opengraph-image.png')
 
-await tile(512, 380, 'app/icon.png')
-await tile(180, 132, 'app/apple-icon.png')
+// Favicons
+await sobreFloresta(512, 512, 424, 'app/icon.png')
+await sobreFloresta(180, 180, 150, 'app/apple-icon.png')

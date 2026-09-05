@@ -1,13 +1,9 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Logo from '@/components/Logo'
+import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
-import {
-  CATEGORIAS,
-  categoriaPorSlug,
-  produtosDaCategoria,
-} from '@/lib/loja'
+import { CATEGORIAS, categoriaPorSlug, produtosDaCategoria } from '@/lib/loja'
 import { SITE_IMERSOES } from '@/lib/contato'
 
 type Props = { params: { slug: string } }
@@ -26,7 +22,10 @@ export function generateMetadata({ params }: Props): Metadata {
     title: categoria.nome,
     description: descricao,
     alternates: { canonical: `/categoria/${categoria.slug}` },
-    openGraph: { title: `${categoria.nome} — JitsHouse Loja`, description: descricao },
+    openGraph: {
+      title: `${categoria.nome} — Jitshouse Loja`,
+      description: descricao,
+    },
   }
 }
 
@@ -39,26 +38,29 @@ export default function PaginaCategoria({ params }: Props) {
 
   return (
     <>
-      <section className="relative overflow-hidden border-b borda-sutil bg-tinta">
-        <Logo
-          mascara
+      <section className="relative overflow-hidden bg-floresta">
+        <Brasao
+          claro
           decorativo
-          className="pointer-events-none absolute left-1/2 top-1/2 w-[140%] max-w-none -translate-x-1/2 -translate-y-1/2 text-ouro-claro opacity-[0.08] md:w-[90%]"
+          className="pointer-events-none absolute -right-10 top-1/2 w-[260px] max-w-none -translate-y-1/2 opacity-[0.09] md:right-10 md:w-[330px]"
         />
         <div className="relative mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
-          <nav aria-label="Você está aqui" className="rotulo text-papel/50">
+          <nav
+            aria-label="Você está aqui"
+            className="rotulo rotulo--fino text-mute-esc"
+          >
             <Link href="/" className="hover:text-papel">
               Loja
             </Link>
             <span aria-hidden> / </span>
-            <span className="text-ouro-claro">{categoria.nome}</span>
+            <span className="text-ouro">{categoria.nome}</span>
           </nav>
 
-          <h1 className="display mt-5 text-5xl text-papel md:text-6xl">
+          <h1 className="display display--claro mt-5 text-[clamp(2.4rem,6vw,4rem)]">
             {categoria.nome}
           </h1>
-          <p className="mt-4 max-w-md text-papel/70">{categoria.chamada}</p>
-          <p className="rotulo mt-8 text-ouro-claro">
+          <p className="mt-4 max-w-md text-mute-esc">{categoria.chamada}</p>
+          <p className="rotulo mt-8 text-ouro">
             {lista.length} {lista.length === 1 ? 'peça' : 'peças'}
           </p>
         </div>
@@ -72,13 +74,13 @@ export default function PaginaCategoria({ params }: Props) {
             ))}
           </div>
         ) : (
-          <p className="border border-dashed borda-sutil p-10 text-center text-cinza">
+          <p className="border border-dashed borda-sutil p-10 text-center text-mute-papel">
             Nenhuma peça cadastrada nesta categoria por enquanto.
           </p>
         )}
       </section>
 
-      <section className="border-t borda-sutil bg-papel-2/60">
+      <section className="border-t borda-sutil bg-papel-alto">
         <div className="mx-auto flex max-w-conteudo flex-col gap-8 px-5 py-16 md:flex-row md:items-center md:justify-between md:px-10">
           <div>
             <p className="sobrancelha">Continue navegando</p>
@@ -87,7 +89,7 @@ export default function PaginaCategoria({ params }: Props) {
                 <Link
                   key={c.slug}
                   href={`/categoria/${c.slug}`}
-                  className="display text-2xl text-tinta underline-offset-4 hover:underline md:text-3xl"
+                  className="display text-[1.7rem] underline-offset-4 hover:underline md:text-[2rem]"
                 >
                   {c.nome}
                 </Link>
@@ -98,7 +100,7 @@ export default function PaginaCategoria({ params }: Props) {
             href={SITE_IMERSOES}
             target="_blank"
             rel="noopener noreferrer"
-            className="botao-contorno shrink-0"
+            className="btn btn--linha shrink-0"
           >
             Ver as imersões
           </a>

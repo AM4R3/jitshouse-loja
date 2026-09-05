@@ -1,8 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Logo from '@/components/Logo'
+import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
-import { CATEGORIAS, capaDaCategoria, destaques, produtosDaCategoria } from '@/lib/loja'
+import hero from '@/public/marca/hero.webp'
+import {
+  CATEGORIAS,
+  capaDaCategoria,
+  destaques,
+  produtosDaCategoria,
+} from '@/lib/loja'
 import { SITE_IMERSOES } from '@/lib/contato'
 
 export default function Home() {
@@ -11,46 +17,63 @@ export default function Home() {
   return (
     <>
       {/* 1 — HERO */}
-      <section className="relative overflow-hidden bg-tinta">
-        <Logo
-          mascara
-          decorativo
-          className="pointer-events-none absolute left-1/2 top-1/2 w-[190%] max-w-none -translate-x-1/2 -translate-y-1/2 text-ouro-claro opacity-[0.07] md:w-[120%]"
+      <section className="relative isolate flex h-[min(84vh,880px)] min-h-[560px] items-end overflow-hidden bg-floresta">
+        <Image
+          src={hero}
+          alt="Camiseta preta da Jitshouse com o brasão nas costas, nas dunas da Praia do Rosa."
+          fill
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          className="-z-20 object-cover object-[62%_28%]"
+        />
+        {/* Véu na floresta, mesma receita do site principal. */}
+        <div
+          aria-hidden
+          className="absolute inset-0 -z-10"
+          style={{
+            background:
+              'linear-gradient(100deg, rgba(4,33,30,.94) 0%, rgba(4,33,30,.82) 30%, rgba(4,33,30,.46) 60%, rgba(4,33,30,.14) 88%), linear-gradient(to top, rgba(4,33,30,.86) 0%, rgba(4,33,30,.6) 32%, rgba(4,33,30,.12) 68%, rgba(4,33,30,0) 88%)',
+          }}
         />
 
-        <div className="relative mx-auto flex max-w-conteudo flex-col items-center px-5 py-28 text-center md:px-10 md:py-40">
-          <Logo
-            mascara
-            className="h-8 w-auto max-w-[260px] text-ouro-claro md:h-11 md:max-w-[360px]"
-          />
+        <div className="mx-auto w-full max-w-conteudo px-5 pb-16 pt-28 md:px-10 md:pb-24 md:pt-40">
+          <Brasao claro decorativo className="mb-7 w-[74px] md:w-[86px]" />
 
-          <p className="rotulo mt-8 text-ouro-claro">
+          <p className="rotulo mb-5 text-ouro">
             A loja oficial da Jitshouse Lifestyle
           </p>
 
-          <h1 className="display mt-5 max-w-3xl text-[2.6rem] text-papel sm:text-6xl md:text-7xl">
-            O tatame é só o começo.{' '}
-            <em className="text-ouro-claro">Vista o lifestyle.</em>
+          <h1 className="display display--claro max-w-[16ch] text-[clamp(2.8rem,8.5vw,6.5rem)]">
+            O tatame é só o começo. <em>Vista o lifestyle.</em>
           </h1>
 
-          <Link href="#produtos" className="botao-ouro mt-10">
+          <p className="mt-6 max-w-[46ch] text-[clamp(1rem,1.7vw,1.2rem)] text-papel/95">
+            Kimonos, faixas e vestuário feitos na Praia do Rosa — as mesmas
+            peças que a gente usa dentro e fora da casa.
+          </p>
+
+          <Link href="#produtos" className="btn btn--ouro mt-9">
             Ver produtos
           </Link>
         </div>
       </section>
 
       {/* 2 — PRODUTOS EM DESTAQUE */}
-      <section id="produtos" className="mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
+      <section
+        id="produtos"
+        className="mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28"
+      >
         <div className="flex flex-wrap items-end justify-between gap-4 border-b borda-sutil pb-6">
           <div>
             <p className="sobrancelha">Vitrine</p>
-            <h2 className="display mt-2 text-4xl md:text-5xl">
+            <h2 className="display mt-3 text-[clamp(2rem,5vw,3.5rem)]">
               Peças <em>em destaque</em>
             </h2>
           </div>
           <Link
             href="/categoria/vestuario"
-            className="rotulo text-cinza underline-offset-4 hover:text-tinta hover:underline"
+            className="rotulo rotulo--fino border-b border-ouro-dia/50 pb-0.5 text-verde-rosa transition-colors duration-300 ease-marca hover:border-ouro-dia"
           >
             Ver tudo
           </Link>
@@ -64,10 +87,10 @@ export default function Home() {
       </section>
 
       {/* 3 — CATEGORIAS */}
-      <section className="border-t borda-sutil bg-papel-2/60">
+      <section className="border-t borda-sutil bg-papel-alto">
         <div className="mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
           <p className="sobrancelha">Navegue</p>
-          <h2 className="display mt-2 text-4xl md:text-5xl">
+          <h2 className="display mt-3 text-[clamp(2rem,5vw,3.5rem)]">
             Três frentes, <em>uma casa só</em>
           </h2>
 
@@ -79,7 +102,7 @@ export default function Home() {
                 <Link
                   key={c.slug}
                   href={`/categoria/${c.slug}`}
-                  className="group relative block overflow-hidden bg-tinta"
+                  className="group relative block overflow-hidden bg-floresta"
                 >
                   <div className="relative aspect-[4/5]">
                     {capa ? (
@@ -88,22 +111,31 @@ export default function Home() {
                         alt=""
                         fill
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover opacity-70 transition-opacity duration-300 group-hover:opacity-90"
+                        className="object-cover opacity-70 transition-opacity duration-300 ease-marca group-hover:opacity-90"
                       />
                     ) : (
-                      <Logo
-                        mascara
+                      <Brasao
+                        claro
                         decorativo
-                        className="absolute left-1/2 top-1/2 w-2/3 -translate-x-1/2 -translate-y-1/2 text-ouro-claro opacity-15"
+                        className="absolute left-1/2 top-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 opacity-40"
                       />
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-tinta via-tinta/40 to-transparent" />
+                    <div
+                      aria-hidden
+                      className="absolute inset-0"
+                      style={{
+                        background:
+                          'linear-gradient(to top, rgba(4,33,30,.95) 0%, rgba(4,33,30,.55) 45%, rgba(4,33,30,.05) 100%)',
+                      }}
+                    />
                   </div>
 
                   <div className="absolute inset-x-0 bottom-0 p-6">
-                    <h3 className="display text-3xl text-papel">{c.nome}</h3>
-                    <p className="mt-1 text-sm text-papel/70">{c.chamada}</p>
-                    <p className="rotulo mt-4 text-ouro-claro">
+                    <h3 className="display display--claro text-[1.7rem]">
+                      {c.nome}
+                    </h3>
+                    <p className="mt-1 text-sm text-mute-esc">{c.chamada}</p>
+                    <p className="rotulo rotulo--fino mt-4 text-ouro">
                       {total} {total === 1 ? 'peça' : 'peças'} →
                     </p>
                   </div>
@@ -115,13 +147,18 @@ export default function Home() {
       </section>
 
       {/* 4 — FAIXA MANIFESTO */}
-      <section className="bg-tinta">
-        <div className="mx-auto max-w-4xl px-5 py-24 text-center md:px-10 md:py-32">
-          <p className="display text-3xl leading-snug text-papel sm:text-4xl md:text-5xl">
+      <section className="relative overflow-hidden bg-floresta">
+        <Brasao
+          claro
+          decorativo
+          className="pointer-events-none absolute -right-16 top-1/2 w-[320px] max-w-none -translate-y-1/2 opacity-[0.07] md:right-8 md:w-[420px]"
+        />
+        <div className="relative mx-auto max-w-3xl px-5 py-24 text-center md:px-10 md:py-32">
+          <p className="display display--claro text-[clamp(1.6rem,3.6vw,2.7rem)] leading-[1.24]">
             Cada peça carrega o que a gente vive na casa:{' '}
-            <em className="text-ouro-claro">disciplina, mar e comunidade.</em>
+            <em>disciplina, mar e comunidade.</em>
           </p>
-          <p className="rotulo mt-10 text-ouro-claro">
+          <p className="rotulo mt-10 text-ouro">
             Viva o Jiu Jitsu. Viva o Lifestyle.
           </p>
         </div>
@@ -129,13 +166,13 @@ export default function Home() {
 
       {/* 5 — CROSS-SELL IMERSÕES */}
       <section className="mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
-        <div className="flex flex-col items-start gap-8 border borda-sutil p-8 md:flex-row md:items-center md:justify-between md:p-14">
+        <div className="flex flex-col items-start gap-8 border borda-sutil bg-papel-alto p-8 md:flex-row md:items-center md:justify-between md:p-14">
           <div>
             <p className="sobrancelha">Imersões Jitshouse</p>
-            <h2 className="display mt-3 max-w-xl text-3xl md:text-4xl">
+            <h2 className="display mt-3 max-w-xl text-[clamp(1.6rem,3.5vw,2.4rem)]">
               Quer viver a casa <em>de verdade?</em>
             </h2>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-cinza">
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-mute-papel">
               Treino, mar e convivência na Praia do Rosa. As imersões e a
               hospedagem ficam no site da Jitshouse.
             </p>
@@ -144,7 +181,7 @@ export default function Home() {
             href={SITE_IMERSOES}
             target="_blank"
             rel="noopener noreferrer"
-            className="botao-contorno shrink-0"
+            className="btn btn--linha shrink-0"
           >
             Conhecer as imersões
           </a>

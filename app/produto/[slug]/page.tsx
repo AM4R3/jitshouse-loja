@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Logo from '@/components/Logo'
+import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
 import { CATEGORIAS, produtoPorSlug, produtos, relacionados } from '@/lib/loja'
 import { parcelamento, precoBRL } from '@/lib/formato'
@@ -27,7 +27,7 @@ export function generateMetadata({ params }: Props): Metadata {
     description: descricao,
     alternates: { canonical: `/produto/${produto.slug}` },
     openGraph: {
-      title: `${produto.nome} — JitsHouse Loja`,
+      title: `${produto.nome} — Jitshouse Loja`,
       description: descricao,
       images: produto.imagem ? [{ url: produto.imagem }] : undefined,
     },
@@ -75,14 +75,17 @@ export default function PaginaProduto({ params }: Props) {
       />
 
       <div className="mx-auto max-w-conteudo px-5 pb-24 pt-8 md:px-10 md:pb-32 md:pt-12">
-        <nav aria-label="Você está aqui" className="rotulo text-cinza">
-          <Link href="/" className="hover:text-tinta">
+        <nav
+          aria-label="Você está aqui"
+          className="rotulo rotulo--fino text-mute-papel"
+        >
+          <Link href="/" className="hover:text-verde-rosa">
             Loja
           </Link>
           <span aria-hidden> / </span>
           <Link
             href={`/categoria/${produto.categoria}`}
-            className="hover:text-tinta"
+            className="hover:text-verde-rosa"
           >
             {categoria?.nome}
           </Link>
@@ -91,7 +94,7 @@ export default function PaginaProduto({ params }: Props) {
         <div className="mt-8 grid gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Galeria */}
           <div>
-            <div className="relative aspect-[3/4] overflow-hidden bg-papel-2">
+            <div className="relative aspect-[3/4] overflow-hidden border borda-sutil bg-papel-alto">
               {produto.imagem ? (
                 <Image
                   src={produto.imagem}
@@ -102,16 +105,13 @@ export default function PaginaProduto({ params }: Props) {
                   className="object-contain"
                 />
               ) : (
-                <Logo
-                  mascara
+                <Brasao
                   decorativo
-                  className="absolute left-1/2 top-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 text-tinta opacity-15"
+                  className="absolute left-1/2 top-1/2 w-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20"
                 />
               )}
               {produto.tag && (
-                <span className="rotulo absolute left-0 top-0 bg-ouro px-3 py-1.5 text-tinta">
-                  {produto.tag}
-                </span>
+                <span className="tag absolute left-0 top-0">{produto.tag}</span>
               )}
             </div>
 
@@ -120,14 +120,14 @@ export default function PaginaProduto({ params }: Props) {
                 {produto.galeria.slice(1, 5).map((src) => (
                   <li
                     key={src}
-                    className="relative aspect-[3/4] overflow-hidden bg-papel-2"
+                    className="relative aspect-[3/4] overflow-hidden border borda-sutil bg-papel-alto"
                   >
                     <Image
                       src={src}
                       alt=""
                       fill
                       sizes="(max-width: 1024px) 22vw, 12vw"
-                      className="object-contain"
+                      className="object-cover"
                     />
                   </li>
                 ))}
@@ -138,29 +138,31 @@ export default function PaginaProduto({ params }: Props) {
           {/* Informacoes */}
           <div className="lg:pt-4">
             <p className="sobrancelha">{categoria?.nome}</p>
-            <h1 className="display mt-3 text-4xl md:text-5xl">{produto.nome}</h1>
+            <h1 className="display mt-3 text-[clamp(2rem,4.6vw,3.2rem)]">
+              {produto.nome}
+            </h1>
 
-            <div className="mt-6 flex items-baseline gap-3">
+            <div className="mt-7 flex items-baseline gap-3">
               {produto.precoDe && (
-                <span className="text-lg text-cinza line-through">
+                <span className="font-rotulo text-lg font-light text-mute-papel line-through">
                   {precoBRL(produto.precoDe)}
                 </span>
               )}
-              <span className="font-sans text-3xl font-medium text-tinta">
+              <span className="display text-[clamp(2.1rem,5.2vw,3.1rem)] leading-[0.92]">
                 {precoBRL(produto.preco)}
               </span>
             </div>
-            <p className="mt-1 text-sm text-cinza">
+            <p className="rotulo rotulo--fino mt-3 text-mute-papel">
               ou {parcelamento(produto.preco)}
             </p>
 
             <div className="mt-8 border-t borda-sutil pt-8">
               {produto.descricao ? (
-                <p className="max-w-prose leading-relaxed text-cinza">
+                <p className="max-w-prose leading-relaxed text-mute-papel">
                   {produto.descricao}
                 </p>
               ) : (
-                <p className="max-w-prose border border-dashed borda-sutil p-4 text-sm leading-relaxed text-cinza">
+                <p className="max-w-prose border border-dashed borda-sutil p-4 text-sm leading-relaxed text-mute-papel">
                   Descrição pendente — a loja atual não tem texto cadastrado
                   para esta peça.
                 </p>
@@ -172,7 +174,7 @@ export default function PaginaProduto({ params }: Props) {
                 href={produto.linkInfinitePay}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="botao-ouro flex-1"
+                className="btn btn--ouro flex-1"
               >
                 Comprar
               </a>
@@ -180,22 +182,22 @@ export default function PaginaProduto({ params }: Props) {
                 href={linkWhatsApp(mensagem)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="botao-contorno flex-1"
+                className="btn btn--linha flex-1"
               >
                 Falar no WhatsApp
               </a>
             </div>
 
-            <p className="mt-4 text-xs text-cinza">
+            <p className="mt-4 text-xs text-mute-papel">
               A compra é finalizada na loja oficial da Jitshouse, em uma nova
               aba.
             </p>
 
-            <dl className="mt-10 grid gap-px border borda-sutil sm:grid-cols-3">
+            <dl className="mt-10 grid border borda-sutil bg-papel-alto sm:grid-cols-3">
               {SELOS.map(([titulo, detalhe]) => (
                 <div key={titulo} className="p-5">
-                  <dt className="rotulo text-tinta">{titulo}</dt>
-                  <dd className="mt-1.5 text-xs text-cinza">{detalhe}</dd>
+                  <dt className="rotulo text-verde-rosa">{titulo}</dt>
+                  <dd className="mt-1.5 text-xs text-mute-papel">{detalhe}</dd>
                 </div>
               ))}
             </dl>
@@ -205,7 +207,7 @@ export default function PaginaProduto({ params }: Props) {
         {/* Voce tambem pode gostar */}
         {sugestoes.length > 0 && (
           <section className="mt-24 border-t borda-sutil pt-12 md:mt-32">
-            <h2 className="display text-3xl md:text-4xl">
+            <h2 className="display text-[clamp(1.6rem,3.5vw,2.4rem)]">
               Você também pode <em>gostar</em>
             </h2>
             <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -221,8 +223,8 @@ export default function PaginaProduto({ params }: Props) {
       <div className="sticky bottom-0 z-40 border-t borda-sutil bg-papel/95 backdrop-blur-md lg:hidden">
         <div className="flex items-center gap-4 px-5 py-3">
           <div className="min-w-0">
-            <p className="truncate text-xs text-cinza">{produto.nome}</p>
-            <p className="font-sans text-sm font-medium text-tinta">
+            <p className="truncate text-xs text-mute-papel">{produto.nome}</p>
+            <p className="display text-xl leading-none">
               {precoBRL(produto.preco)}
             </p>
           </div>
@@ -230,7 +232,7 @@ export default function PaginaProduto({ params }: Props) {
             href={produto.linkInfinitePay}
             target="_blank"
             rel="noopener noreferrer"
-            className="botao-ouro ml-auto shrink-0 px-6 py-3.5"
+            className="btn btn--ouro ml-auto shrink-0 px-6 py-3.5"
           >
             Comprar
           </a>

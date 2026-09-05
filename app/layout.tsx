@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
-import { Instrument_Serif, Inter } from 'next/font/google'
+import { DM_Serif_Display, Inter, Oswald } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import './globals.css'
 
-const display = Instrument_Serif({
+/* Mesmas três fontes do site principal (jitshouse.site). */
+const display = DM_Serif_Display({
   subsets: ['latin'],
   weight: '400',
   style: ['normal', 'italic'],
@@ -12,19 +13,28 @@ const display = Instrument_Serif({
   variable: '--fonte-display',
 })
 
+const rotulo = Oswald({
+  subsets: ['latin'],
+  weight: ['300', '500'],
+  display: 'swap',
+  variable: '--fonte-rotulo',
+})
+
 const corpo = Inter({
   subsets: ['latin'],
+  weight: ['400', '500'],
   display: 'swap',
   variable: '--fonte-corpo',
 })
 
-const URL_SITE = process.env.NEXT_PUBLIC_URL_SITE ?? 'https://jitshouse-loja.vercel.app'
+const URL_SITE =
+  process.env.NEXT_PUBLIC_URL_SITE ?? 'https://jitshouse-loja.vercel.app'
 
 export const metadata: Metadata = {
   metadataBase: new URL(URL_SITE),
   title: {
-    default: 'JitsHouse Loja — Viva o Jiu Jitsu. Viva o Lifestyle.',
-    template: '%s — JitsHouse Loja',
+    default: 'Jitshouse Loja — Viva o Jiu Jitsu. Viva o Lifestyle.',
+    template: '%s — Jitshouse Loja',
   },
   description:
     'A loja oficial da Jitshouse Lifestyle. Kimonos, faixas, vestuário e acessórios feitos na Praia do Rosa, Imbituba — SC.',
@@ -40,14 +50,12 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'pt_BR',
     url: URL_SITE,
-    siteName: 'JitsHouse Loja',
-    title: 'JitsHouse Loja — Viva o Jiu Jitsu. Viva o Lifestyle.',
+    siteName: 'Jitshouse Loja',
+    title: 'Jitshouse Loja — Viva o Jiu Jitsu. Viva o Lifestyle.',
     description:
       'A loja oficial da Jitshouse Lifestyle. Kimonos, faixas, vestuário e acessórios da Praia do Rosa.',
   },
-  twitter: {
-    card: 'summary_large_image',
-  },
+  twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
 }
 
@@ -57,11 +65,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-BR" className={`${display.variable} ${corpo.variable}`}>
+    <html
+      lang="pt-BR"
+      className={`${display.variable} ${rotulo.variable} ${corpo.variable}`}
+    >
       <body className="flex min-h-screen flex-col">
         <a
           href="#conteudo"
-          className="rotulo sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-tinta focus:px-5 focus:py-3 focus:text-papel"
+          className="rotulo sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-floresta focus:px-5 focus:py-3 focus:text-papel"
         >
           Pular para o conteúdo
         </a>

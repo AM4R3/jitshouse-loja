@@ -13,6 +13,7 @@ export function precoBRL(valor: number) {
   return brl.format(valor)
 }
 
-export function parcelamento(valor: number) {
-  return `${PARCELAS_MAX}x de ${brl.format(valor / PARCELAS_MAX)} no cartão`
+export function parcelamento(valor: number, curto = false) {
+  const parcela = `${PARCELAS_MAX}x de ${brl.format(valor / PARCELAS_MAX)}`
+  return curto ? parcela : `${parcela} no cartão`
 }

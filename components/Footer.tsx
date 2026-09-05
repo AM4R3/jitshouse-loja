@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Logo from './Logo'
+import { Marca } from './Marca'
 import {
   EMAIL,
   INSTAGRAM,
@@ -10,36 +10,41 @@ import {
   linkWhatsApp,
 } from '@/lib/contato'
 
+const ELO =
+  'border-b border-ouro/35 pb-0.5 transition-colors duration-300 ease-marca hover:border-ouro'
+
 export default function Footer() {
   return (
-    <footer className="bg-tinta text-papel">
+    <footer className="bg-floresta-2 text-papel">
       <div className="mx-auto grid max-w-conteudo gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:px-10 md:py-24">
         <div>
-          <Logo mascara className="h-6 w-auto max-w-[220px] text-ouro-claro" />
-          <p className="display mt-6 max-w-xs text-2xl leading-snug text-papel">
+          <div className="flex items-center gap-2.5">
+            <Marca claro tamanho={46} legenda="Lifestyle" />
+          </div>
+          <p className="display display--claro mt-7 max-w-xs text-[1.9rem]">
             Viva o Jiu Jitsu.
             <br />
-            <em className="text-ouro-claro">Viva o Lifestyle.</em>
+            <em>Viva o Lifestyle.</em>
           </p>
         </div>
 
         <nav aria-labelledby="rodape-loja">
-          <h2 id="rodape-loja" className="rotulo text-ouro-claro">
+          <h2 id="rodape-loja" className="rotulo text-ouro">
             A loja
           </h2>
-          <ul className="mt-5 space-y-3 text-sm text-papel/70">
+          <ul className="mt-5 space-y-3 text-sm text-mute-esc">
             <li>
-              <Link href="/categoria/kimonos" className="hover:text-papel">
+              <Link href="/categoria/kimonos" className={ELO}>
                 Kimonos &amp; faixas
               </Link>
             </li>
             <li>
-              <Link href="/categoria/vestuario" className="hover:text-papel">
+              <Link href="/categoria/vestuario" className={ELO}>
                 Vestuário lifestyle
               </Link>
             </li>
             <li>
-              <Link href="/categoria/acessorios" className="hover:text-papel">
+              <Link href="/categoria/acessorios" className={ELO}>
                 Acessórios
               </Link>
             </li>
@@ -48,7 +53,7 @@ export default function Footer() {
                 href={LOJA_ATUAL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-papel"
+                className={ELO}
               >
                 Meus pedidos ↗
               </a>
@@ -57,16 +62,16 @@ export default function Footer() {
         </nav>
 
         <nav aria-labelledby="rodape-jitshouse">
-          <h2 id="rodape-jitshouse" className="rotulo text-ouro-claro">
+          <h2 id="rodape-jitshouse" className="rotulo text-ouro">
             Jitshouse
           </h2>
-          <ul className="mt-5 space-y-3 text-sm text-papel/70">
+          <ul className="mt-5 space-y-3 text-sm text-mute-esc">
             <li>
               <a
                 href={SITE_IMERSOES}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-papel"
+                className={ELO}
               >
                 Imersões e hospedagem ↗
               </a>
@@ -76,13 +81,13 @@ export default function Footer() {
                 href={linkWhatsApp('Olá! Vim pela loja da Jitshouse.')}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-papel"
+                className={ELO}
               >
                 WhatsApp {WHATSAPP_EXIBICAO}
               </a>
             </li>
             <li>
-              <a href={`mailto:${EMAIL}`} className="break-all hover:text-papel">
+              <a href={`mailto:${EMAIL}`} className={`${ELO} break-all`}>
                 {EMAIL}
               </a>
             </li>
@@ -91,7 +96,7 @@ export default function Footer() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-papel"
+                className={ELO}
               >
                 @{INSTAGRAM}
               </a>
@@ -100,8 +105,8 @@ export default function Footer() {
         </nav>
       </div>
 
-      <div className="border-t border-papel/15">
-        <p className="mx-auto max-w-conteudo px-5 py-6 text-xs text-papel/50 md:px-10">
+      <div className="border-t borda-clara">
+        <p className="rotulo rotulo--fino mx-auto max-w-conteudo px-5 py-6 text-mute-esc md:px-10">
           © 2026 Jitshouse Lifestyle · Praia do Rosa, Imbituba — SC · Viva o Jiu
           Jitsu. Viva o Lifestyle.
         </p>

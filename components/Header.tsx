@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import Logo from './Logo'
+import { Marca } from './Marca'
 import { CARRINHO_ATUAL, SITE_IMERSOES } from '@/lib/contato'
 
 const LINKS = [
@@ -11,33 +11,30 @@ const LINKS = [
   { href: '/categoria/acessorios', rotulo: 'Acessórios' },
 ]
 
+const ELO =
+  'font-rotulo text-[0.72rem] font-light uppercase tracking-[0.16em] text-tinta transition-colors duration-300 ease-marca hover:text-verde-rosa'
+
 export default function Header() {
   const [aberto, setAberto] = useState(false)
 
   return (
-    <header className="sticky top-0 z-50 border-b borda-sutil bg-papel/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-conteudo items-center gap-6 px-5 py-4 md:px-10">
+    <header className="sticky top-0 z-50 border-b borda-sutil bg-papel/90 backdrop-blur-md">
+      <div className="mx-auto flex h-[66px] max-w-conteudo items-center gap-6 px-5 md:px-10">
         <Link
           href="/"
-          className="flex items-center gap-3"
+          aria-label="Jitshouse Loja — início"
+          className="mr-auto flex items-center gap-2.5"
           onClick={() => setAberto(false)}
         >
-          <Logo priority className="h-5 w-auto md:h-6" />
-          <span className="display hidden text-lg text-tinta sm:inline">
-            Loja
-          </span>
-          <span className="sr-only">JitsHouse Loja — início</span>
+          <Marca />
         </Link>
 
-        <nav
-          aria-label="Categorias"
-          className="ml-auto hidden items-center gap-8 md:flex"
-        >
+        <nav aria-label="Categorias" className="hidden items-center gap-7 md:flex">
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className="rotulo text-cinza transition-colors hover:text-tinta"
+              className={`${ELO} border-b border-transparent pb-1 hover:border-ouro-dia`}
             >
               {l.rotulo}
             </Link>
@@ -46,7 +43,7 @@ export default function Header() {
             href={SITE_IMERSOES}
             target="_blank"
             rel="noopener noreferrer"
-            className="rotulo text-cinza transition-colors hover:text-tinta"
+            className={`${ELO} border-b border-transparent pb-1 hover:border-ouro-dia`}
           >
             Imersões
           </a>
@@ -56,7 +53,7 @@ export default function Header() {
           href={CARRINHO_ATUAL}
           target="_blank"
           rel="noopener noreferrer"
-          className="rotulo ml-auto border border-tinta px-4 py-2.5 text-tinta transition-colors hover:bg-tinta hover:text-papel md:ml-0"
+          className="btn btn--solido btn--peq"
         >
           Carrinho
         </a>
@@ -66,7 +63,7 @@ export default function Header() {
           onClick={() => setAberto((v) => !v)}
           aria-expanded={aberto}
           aria-controls="menu-mobile"
-          className="rotulo border border-tinta px-4 py-2.5 text-tinta transition-colors hover:bg-tinta hover:text-papel md:hidden"
+          className="btn btn--linha btn--peq md:hidden"
         >
           {aberto ? 'Fechar' : 'Menu'}
         </button>
@@ -78,24 +75,24 @@ export default function Header() {
           aria-label="Categorias"
           className="border-t borda-sutil bg-papel md:hidden"
         >
-          <ul className="mx-auto max-w-conteudo px-5 py-2">
+          <ul className="mx-auto max-w-conteudo px-5">
             {LINKS.map((l) => (
-              <li key={l.href} className="border-b borda-sutil last:border-0">
+              <li key={l.href} className="border-b borda-sutil">
                 <Link
                   href={l.href}
                   onClick={() => setAberto(false)}
-                  className="rotulo block py-4 text-tinta"
+                  className={`${ELO} block py-4`}
                 >
                   {l.rotulo}
                 </Link>
               </li>
             ))}
-            <li className="border-t borda-sutil">
+            <li>
               <a
                 href={SITE_IMERSOES}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rotulo block py-4 text-cinza"
+                className={`${ELO} block py-4`}
               >
                 Imersões ↗
               </a>

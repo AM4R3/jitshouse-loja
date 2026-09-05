@@ -2,105 +2,198 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Identidade herdada de jitshouse.site — mesmos tokens, mesmas fontes,
+ * mesmas regras de botão e de sobrancelha. Ao mexer no site principal,
+ * mexer aqui também.
+ */
 :root {
-  --papel: #f3eee3;
-  --papel-2: #eae2d2;
-  --tinta: #171410;
-  --ouro: #b9892f;
-  --ouro-claro: #d2ac5c;
-  --cinza: #6e675c;
+  --papel: #f0e8d6; /* DOMINANTE — papel de pôster vintage */
+  --papel-alto: #f7f1e4; /* cards e respiro sobre papel */
+  --floresta: #04211e; /* faixas escuras pontuais (real da marca) */
+  --floresta-2: #01100f; /* CTA final e rodapé */
+  --verde-rosa: #004030; /* verde da rosa do brasão — 9.7:1 no papel */
+  --ouro: #c5b178; /* aro do brasão — 8.0:1 na floresta */
+  --areia: #f9da85; /* triângulo do brasão — 12.4:1 na floresta */
+  --ouro-dia: #935c0e; /* o ouro da marca rebaixado p/ papel — 4.6:1 */
+  --areia-sol: #d98e3b; /* acento tropical, só preenchimento */
+  --tinta: #1c2420; /* corpo de texto no papel — 13.0:1 */
+  --mute-papel: #4a554f; /* secundário no papel — 6.4:1 */
+  --mute-esc: #a7bcb2; /* secundário na floresta — 8.4:1 */
+
+  --fs-micro: clamp(0.67rem, 1.05vw, 0.76rem);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: var(--papel);
     color: var(--tinta);
     font-family: var(--fonte-corpo), system-ui, sans-serif;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
 
+  /* Grão de pôster por cima de tudo, igual ao site principal. */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background-image: var(--grao);
+    opacity: 0.04;
+    mix-blend-mode: multiply;
+  }
+
   ::selection {
-    background-color: var(--ouro-claro);
-    color: var(--tinta);
+    background-color: var(--areia);
+    color: var(--floresta-2);
   }
 
   :focus-visible {
-    outline: 2px solid var(--ouro);
+    outline: 2px solid var(--ouro-dia);
     outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
 @layer components {
-  /* Rótulos e botões: caixa alta, tracking largo, sem raio. */
+  /* ── tipografia ───────────────────────────────────────────────── */
+  .display {
+    font-family: var(--fonte-display), Georgia, serif;
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.005em;
+    color: var(--verde-rosa);
+    text-wrap: balance;
+  }
+
+  .display em {
+    font-style: italic;
+    color: var(--ouro-dia);
+  }
+
+  /* Sobre fundo escuro o display vira papel e o itálico vira areia. */
+  .display--claro {
+    color: var(--papel);
+  }
+
+  .display--claro em {
+    color: var(--areia);
+  }
+
   .rotulo {
-    @apply font-sans text-[0.6875rem] uppercase tracking-label;
+    font-family: var(--fonte-rotulo), 'Arial Narrow', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: var(--fs-micro);
+    line-height: 1.5;
   }
 
-  .botao {
-    @apply rotulo inline-flex items-center justify-center gap-2 border px-7 py-4 font-medium transition-colors duration-200;
+  .rotulo--fino {
+    font-weight: 300;
+    letter-spacing: 0.22em;
   }
 
-  /* Texto tinta sobre ouro: 5.8:1. Papel sobre ouro daria 2.7:1 e reprovaria em contraste. */
-  .botao-ouro {
-    @apply botao border-ouro bg-ouro text-tinta hover:border-tinta hover:bg-tinta hover:text-ouro-claro;
+  /* ── botões ───────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2;
+    font-family: var(--fonte-rotulo), sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: var(--fs-micro);
+    line-height: 1;
+    padding: 1.05rem 1.7rem;
+    border: 1px solid transparent;
+    border-radius: 1px;
+    transition:
+      background 0.3s var(--ease),
+      color 0.3s var(--ease),
+      border-color 0.3s var(--ease);
   }
 
-  .botao-tinta {
-    @apply botao border-tinta bg-tinta text-papel hover:bg-transparent hover:text-tinta;
+  .btn--solido {
+    background: var(--floresta);
+    color: var(--papel);
+  }
+  .btn--solido:hover {
+    background: var(--verde-rosa);
   }
 
-  .botao-contorno {
-    @apply botao border-tinta bg-transparent text-tinta hover:bg-tinta hover:text-papel;
+  .btn--linha {
+    border-color: var(--verde-rosa);
+    color: var(--verde-rosa);
+  }
+  .btn--linha:hover {
+    background: var(--verde-rosa);
+    color: var(--papel);
   }
 
-  .botao-contorno-claro {
-    @apply botao border-papel/40 bg-transparent text-papel hover:bg-papel hover:text-tinta;
+  .btn--ouro {
+    background: var(--ouro);
+    color: var(--floresta-2);
+  }
+  .btn--ouro:hover {
+    background: var(--areia);
   }
 
-  /*
-   * Sobrancelha de seção. O ouro da paleta não alcança 4.5:1 sobre o papel,
-   * então o texto vai em tinta e o ouro entra como filete — o acento
-   * continua lá, sem custo de legibilidade. Em fundo tinta, use
-   * `.rotulo text-ouro-claro` direto (8.6:1).
-   */
+  .btn--claro {
+    border-color: var(--papel);
+    color: var(--papel);
+  }
+  .btn--claro:hover {
+    background: var(--papel);
+    color: var(--floresta);
+  }
+
+  .btn--peq {
+    padding: 0.72rem 1.1rem;
+  }
+
+  /* ── etiqueta de produto ──────────────────────────────────────── */
+  .tag {
+    @apply rotulo inline-flex items-center;
+    padding: 0.35rem 0.75rem;
+    background: var(--ouro);
+    color: var(--floresta-2);
+    border-radius: 1px;
+  }
+
+  .tag--escura {
+    background: var(--floresta);
+    color: var(--papel);
+  }
+
+  /* Sobrancelha de seção: filete ouro + rótulo, como as seções do site. */
   .sobrancelha {
-    @apply rotulo flex items-center gap-3 text-tinta;
+    @apply rotulo flex items-center gap-3;
+    color: var(--verde-rosa);
   }
 
   .sobrancelha::before {
     content: '';
     width: 1.75rem;
     height: 1px;
-    background-color: var(--ouro);
-  }
-
-  /* Títulos display; palavras-chave em itálico via <em>. */
-  .display {
-    @apply font-display font-normal leading-[1.05] tracking-[-0.01em];
+    background-color: var(--ouro-dia);
   }
 }
 
 @layer utilities {
   .borda-sutil {
-    border-color: rgb(23 20 16 / 0.12);
+    border-color: rgb(0 64 48 / 0.18);
   }
-}
 
-/* O logo da loja é um wordmark chapado com alpha: usamos como máscara
-   para pintá-lo em qualquer cor da paleta sem sair da identidade. */
-.logo-mascara {
-  display: block;
-  background-color: currentColor;
-  -webkit-mask-image: url('/marca/logo.webp');
-  mask-image: url('/marca/logo.webp');
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-size: contain;
-  mask-size: contain;
+  .borda-clara {
+    border-color: rgb(240 232 214 / 0.18);
+  }
 }
