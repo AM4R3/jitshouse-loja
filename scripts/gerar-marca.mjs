@@ -12,7 +12,7 @@
  *   node scripts/gerar-marca.mjs
  */
 import sharp from 'sharp'
-import { mkdir, stat, readFile } from 'node:fs/promises'
+import { copyFile, mkdir, stat, readFile } from 'node:fs/promises'
 
 const FLORESTA = { r: 0x04, g: 0x21, b: 0x1e, alpha: 1 }
 
@@ -36,15 +36,20 @@ async function brasaoOuro(largura) {
 const FAVICON = 'public/marca/favicon-institucional.png'
 
 async function favicon(lado, destino, opaco) {
-  let img = sharp(FAVICON).resize(lado, lado, { kernel: 'mitchell' })
-  if (opaco) img = img.flatten({ background: FLORESTA })
-  await img.png({ palette: true, colours: 128, compressionLevel: 9 }).toFile(destino)
+  if (!lado) {
+    // Sem reamostrar nem recodificar: pixel a pixel o mesmo do site.
+    await copyFile(FAVICON, destino)
+  } else {
+    let img = sharp(FAVICON).resize(lado, lado, { kernel: 'mitchell' })
+    if (opaco) img = img.flatten({ background: FLORESTA })
+    await img.png({ palette: true, colours: 128, compressionLevel: 9 }).toFile(destino)
+  }
   console.log(`OK ${destino} (${await tamanho(destino)})`)
 }
 
 await mkdir('app/og/produtos', { recursive: true })
 
-await favicon(28, 'app/icon.png')
+await favicon(null, 'app/icon.png')
 await favicon(180, 'app/apple-icon.png', true)
 
 // Brasão solto, com fundo transparente, para os cards.
