@@ -69,18 +69,20 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${display.variable} ${rotulo.variable} ${corpo.variable}`}
     >
-      <body className="flex min-h-screen flex-col">
+      <body>
         <a
           href="#conteudo"
           className="rotulo sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:bg-floresta focus:px-5 focus:py-3 focus:text-papel"
         >
           Pular para o conteúdo
         </a>
-        <Header />
-        <main id="conteudo" className="flex-1">
-          {children}
-        </main>
-        <Footer />
+        <div className="envelope flex min-h-screen flex-col">
+          <Header />
+          <main id="conteudo" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   )

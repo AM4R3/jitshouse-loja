@@ -43,6 +43,21 @@
     -webkit-font-smoothing: antialiased;
   }
 
+  /*
+   * Trava a rolagem lateral. O corte fica num invólucro, não no `html` nem no
+   * `body`: nesses dois o overflow propaga para a viewport (regra do HTML) e
+   * aí ele deixa de recortar os filhos e ainda mata a rolagem vertical junto.
+   *
+   * E é `clip`, não `hidden`: `hidden` criaria um contexto de rolagem e
+   * quebraria o `position: sticky` do cabeçalho e da barra de compra. `clip`
+   * recorta sem virar scroll container, então o sticky continua ancorado
+   * na viewport.
+   */
+  .envelope {
+    overflow-x: clip;
+    overflow-clip-margin: 0;
+  }
+
   /* Grão de pôster por cima de tudo, igual ao site principal. */
   body::after {
     content: '';
