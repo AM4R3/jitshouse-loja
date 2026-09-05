@@ -1,36 +1,69 @@
 /**
- * Gera OG image e favicons a partir do brasão da marca — o mesmo asset do
- * site principal (public/marca/brasao-ouro.webp). Nenhuma imagem externa
- * entra aqui.
+ * Gera os assets estáticos de marca a partir do brasão e da foto do hero:
+ *
+ *   app/icon.png, app/apple-icon.png   favicons
+ *   app/og/brasao.png                  brasão em ouro, p/ os cards de link
+ *   app/og/hero.jpg                    foto do hero recortada em 1200x630
+ *   app/og/produtos/<slug>.jpg         foto de cada peça p/ o card do produto
+ *
+ * Os cards de Open Graph em si são montados em app/**\/opengraph-image.tsx,
+ * que compõem estes arquivos com o texto na tipografia da marca.
  *
  *   node scripts/gerar-marca.mjs
  */
 import sharp from 'sharp'
-import { stat } from 'node:fs/promises'
+import { mkdir, stat, readFile } from 'node:fs/promises'
 
 const FLORESTA = { r: 0x04, g: 0x21, b: 0x1e, alpha: 1 }
 
-async function sobreFloresta(largura, altura, tamanhoBrasao, destino, paleta) {
-  const brasao = await sharp('public/marca/brasao-ouro.webp')
-    .resize({ width: tamanhoBrasao })
-    .png()
-    .toBuffer()
-
-  await sharp({
-    create: { width: largura, height: altura, channels: 4, background: FLORESTA },
-  })
-    .composite([{ input: brasao, gravity: 'center' }])
-    // Favicon entra no carregamento inicial: paleta reduzida para nao pesar.
-    .png(paleta ? { palette: true, colours: 64, compressionLevel: 9 } : {})
-    .toFile(destino)
-
-  const { size } = await stat(destino)
-  console.log('OK ' + destino + ' (' + (size / 1024).toFixed(0) + ' kB)')
+async function tamanho(arquivo) {
+  const { size } = await stat(arquivo)
+  return (size / 1024).toFixed(0) + ' kB'
 }
 
-// Open Graph / Twitter — 1200x630
-await sobreFloresta(1200, 630, 400, 'app/opengraph-image.png')
+async function brasaoOuro(largura) {
+  return sharp('public/marca/brasao-ouro.webp')
+    .resize({ width: largura })
+    .png()
+    .toBuffer()
+}
 
-// Favicons
-await sobreFloresta(192, 192, 160, 'app/icon.png', true)
-await sobreFloresta(180, 180, 150, 'app/apple-icon.png', true)
+/** Favicon: brasão ouro centrado num quadrado floresta. */
+async function favicon(lado, tamanhoBrasao, destino) {
+  await sharp({
+    create: { width: lado, height: lado, channels: 4, background: FLORESTA },
+  })
+    .composite([{ input: await brasaoOuro(tamanhoBrasao), gravity: 'center' }])
+    // Paleta reduzida: o favicon entra no carregamento inicial.
+    .png({ palette: true, colours: 64, compressionLevel: 9 })
+    .toFile(destino)
+  console.log(`OK ${destino} (${await tamanho(destino)})`)
+}
+
+await mkdir('app/og/produtos', { recursive: true })
+
+await favicon(192, 160, 'app/icon.png')
+await favicon(180, 150, 'app/apple-icon.png')
+
+// Brasão solto, com fundo transparente, para os cards.
+await sharp(await brasaoOuro(240)).png().toFile('app/og/brasao.png')
+console.log(`OK app/og/brasao.png (${await tamanho('app/og/brasao.png')})`)
+
+// Hero em 1200x630 — mesmo enquadramento do topo da home.
+await sharp('public/marca/hero.webp')
+  .resize({ width: 1200, height: 630, fit: 'cover', position: sharp.strategy.attention })
+  .jpeg({ quality: 82 })
+  .toFile('app/og/hero.jpg')
+console.log(`OK app/og/hero.jpg (${await tamanho('app/og/hero.jpg')})`)
+
+// Uma foto por peça, no formato do painel esquerdo do card de produto.
+const produtos = JSON.parse(await readFile('data/produtos.json', 'utf8'))
+for (const p of produtos) {
+  if (!p.imagem) continue
+  const destino = `app/og/produtos/${p.slug}.jpg`
+  await sharp('public' + p.imagem)
+    .resize({ width: 520, height: 630, fit: 'contain', background: '#F7F1E4' })
+    .jpeg({ quality: 78 })
+    .toFile(destino)
+}
+console.log(`OK app/og/produtos/ (${produtos.length} peças)`)

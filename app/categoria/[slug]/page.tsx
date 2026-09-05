@@ -23,9 +23,22 @@ export function generateMetadata({ params }: Props): Metadata {
     description: descricao,
     alternates: { canonical: `/categoria/${categoria.slug}` },
     openGraph: {
+      type: 'website',
       title: `${categoria.nome} — Jitshouse Loja`,
       description: descricao,
+      images: [cartao(categoria)],
     },
+    twitter: { card: 'summary_large_image', images: [cartao(categoria)] },
+  }
+}
+
+/* Card 1200x630 gerado por scripts/gerar-og.mjs. */
+function cartao(categoria: { slug: string; nome: string }) {
+  return {
+    url: `/og/categoria-${categoria.slug}.jpg`,
+    width: 1200,
+    height: 630,
+    alt: `${categoria.nome} — Jitshouse Loja`,
   }
 }
 

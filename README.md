@@ -47,8 +47,8 @@ app/
   page.tsx                  home (hero, vitrine, categorias, manifesto, cross-sell)
   produto/[slug]/page.tsx   página de produto + "você também pode gostar"
   categoria/[slug]/page.tsx grid filtrado
-  opengraph-image.png       OG 1200x630 gerada a partir do brasão
-  icon.png / apple-icon.png favicons gerados a partir do brasão
+  opengraph-image.jpg       card de link da home (1200x630)
+  icon.png / apple-icon.png favicons
 components/                 Header, Footer, Marca, ProdutoCard
 lib/
   loja.ts                   leitura do catálogo, categorias, relacionados
@@ -58,7 +58,10 @@ data/produtos.json          catálogo (fonte única de verdade)
 public/produtos/            fotos dos produtos (.webp)
 public/marca/brasao-*.webp  brasão da marca (mesmo do site principal)
 public/marca/hero.webp      foto do hero (catálogo da loja atual)
-scripts/gerar-marca.mjs     regera OG image e favicons a partir do brasão
+public/og/                  cards de link de cada produto e categoria
+app/fontes-og/              DM Serif Display e Oswald em .ttf/.woff, só p/ os cards
+scripts/gerar-marca.mjs     favicons e os recortes de foto usados nos cards
+scripts/gerar-og.mjs        monta os cards de link (texto vira vetor)
 ```
 
 ## Origem dos dados
@@ -89,8 +92,19 @@ saem todas dele. Campos por item:
 | `tag`             | etiqueta ouro no card (`"Oferta"` ou `null`)                |
 | `linkCompra`      | URL da peça na Shopify; `null` cai no WhatsApp               |
 
-Ao trocar o brasão, rode `node scripts/gerar-marca.mjs` para regerar OG image
-e favicons.
+Depois de mexer no catálogo, no brasão ou na foto do hero, rode:
+
+```bash
+npm run marca
+```
+
+Isso regera os favicons e **os cards de link** — a imagem que aparece quando
+alguém cola o link no WhatsApp, Instagram, X ou LinkedIn. São três formatos:
+a home leva a foto do hero com o título; cada produto leva a foto da peça, o
+nome e o preço; cada categoria leva o nome sobre o brasão. O texto é
+convertido em vetor com `opentype.js` antes de virar imagem, então o card sai
+na tipografia da marca sem depender de fonte instalada na máquina — e sem o
+`@vercel/og`, que tem um bug de caminho no Windows no Next 14.
 
 ## Identidade
 

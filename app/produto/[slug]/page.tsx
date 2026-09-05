@@ -30,10 +30,22 @@ export function generateMetadata({ params }: Props): Metadata {
     description: descricao,
     alternates: { canonical: `/produto/${produto.slug}` },
     openGraph: {
+      type: 'website',
       title: `${produto.nome} — Jitshouse Loja`,
       description: descricao,
-      images: produto.imagem ? [{ url: produto.imagem }] : undefined,
+      images: [cardDoLink(produto)],
     },
+    twitter: { card: 'summary_large_image', images: [cardDoLink(produto)] },
+  }
+}
+
+/* Card 1200x630 gerado por scripts/gerar-og.mjs. */
+function cardDoLink(produto: { slug: string; nome: string }) {
+  return {
+    url: `/og/produto-${produto.slug}.jpg`,
+    width: 1200,
+    height: 630,
+    alt: `${produto.nome} — Jitshouse Loja`,
   }
 }
 
