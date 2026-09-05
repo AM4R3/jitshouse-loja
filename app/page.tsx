@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Emenda from '@/components/Emenda'
 import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
 import hero from '@/public/marca/hero.webp'
@@ -37,7 +38,9 @@ export default function Home() {
           }}
         />
 
-        <div className="mx-auto w-full max-w-conteudo px-5 pb-16 pt-28 md:px-10 md:pb-24 md:pt-40">
+        <Emenda cor="papel" posicao="base" altura={150} />
+
+        <div className="relative mx-auto w-full max-w-conteudo px-5 pb-20 pt-28 md:px-10 md:pb-28 md:pt-40">
           <Brasao claro decorativo className="mb-7 w-[74px] md:w-[86px]" />
 
           <p className="rotulo mb-5 text-ouro">
@@ -89,8 +92,10 @@ export default function Home() {
       </section>
 
       {/* 3 — CATEGORIAS */}
-      <section className="border-t borda-sutil bg-papel-alto">
-        <div className="mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
+      <section className="relative bg-papel-alto">
+        <Emenda cor="papel" altura={120} />
+        <Emenda cor="papel" posicao="base" altura={120} />
+        <div className="relative mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
           <p className="sobrancelha">Navegue</p>
           <h2 className="display mt-3 text-[clamp(2rem,5vw,3.5rem)]">
             Três frentes, <em>uma casa só</em>
@@ -155,7 +160,10 @@ export default function Home() {
           decorativo
           className="pointer-events-none absolute -right-16 top-1/2 w-[320px] max-w-none -translate-y-1/2 opacity-[0.07] md:right-8 md:w-[420px]"
         />
-        <div className="relative mx-auto max-w-3xl px-5 py-24 text-center md:px-10 md:py-32">
+        <Emenda cor="papel-alto" altura={140} />
+        <Emenda cor="papel" posicao="base" altura={140} />
+
+        <div className="relative mx-auto max-w-3xl px-5 py-32 text-center md:px-10 md:py-40">
           <p className="display display--claro text-[clamp(1.6rem,3.6vw,2.7rem)] leading-[1.24]">
             Cada peça carrega o que a gente vive na casa:{' '}
             <em>disciplina, mar e comunidade.</em>

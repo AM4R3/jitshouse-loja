@@ -28,22 +28,24 @@ async function brasaoOuro(largura) {
     .toBuffer()
 }
 
-/** Favicon: brasão ouro centrado num quadrado floresta. */
-async function favicon(lado, tamanhoBrasao, destino) {
-  await sharp({
-    create: { width: lado, height: lado, channels: 4, background: FLORESTA },
-  })
-    .composite([{ input: await brasaoOuro(tamanhoBrasao), gravity: 'center' }])
-    // Paleta reduzida: o favicon entra no carregamento inicial.
-    .png({ palette: true, colours: 64, compressionLevel: 9 })
-    .toFile(destino)
+/**
+ * Favicon: o mesmo selo de jitshouse.site, para as duas abas ficarem iguais.
+ * O original tem 28x28 — o `app/icon.png` sai idêntico a ele, e o ícone de
+ * iOS é o mesmo desenho ampliado sobre floresta (precisa ser opaco).
+ */
+const FAVICON = 'public/marca/favicon-institucional.png'
+
+async function favicon(lado, destino, opaco) {
+  let img = sharp(FAVICON).resize(lado, lado, { kernel: 'mitchell' })
+  if (opaco) img = img.flatten({ background: FLORESTA })
+  await img.png({ palette: true, colours: 128, compressionLevel: 9 }).toFile(destino)
   console.log(`OK ${destino} (${await tamanho(destino)})`)
 }
 
 await mkdir('app/og/produtos', { recursive: true })
 
-await favicon(192, 160, 'app/icon.png')
-await favicon(180, 150, 'app/apple-icon.png')
+await favicon(28, 'app/icon.png')
+await favicon(180, 'app/apple-icon.png', true)
 
 // Brasão solto, com fundo transparente, para os cards.
 await sharp(await brasaoOuro(240)).png().toFile('app/og/brasao.png')

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Emenda from './Emenda'
 import { Marca } from './Marca'
 import {
   EMAIL,
@@ -14,8 +15,10 @@ const ELO =
 
 export default function Footer() {
   return (
-    <footer className="bg-floresta-2 text-papel">
-      <div className="mx-auto grid max-w-conteudo gap-12 px-5 py-16 md:grid-cols-[1.4fr_1fr_1fr] md:px-10 md:py-24">
+    <footer className="relative bg-floresta-2 text-papel">
+      <Emenda cor="papel" altura={130} />
+
+      <div className="relative mx-auto grid max-w-conteudo gap-12 px-5 py-24 md:grid-cols-[1.4fr_1fr_1fr] md:px-10 md:py-28">
         <div>
           <div className="flex items-center gap-2.5">
             <Marca claro tamanho={46} legenda="Lifestyle" />

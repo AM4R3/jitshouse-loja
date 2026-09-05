@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Emenda from '@/components/Emenda'
 import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
 import { CATEGORIAS, categoriaPorSlug, produtosDaCategoria } from '@/lib/loja'
@@ -57,7 +58,9 @@ export default function PaginaCategoria({ params }: Props) {
           decorativo
           className="pointer-events-none absolute -right-10 top-1/2 w-[260px] max-w-none -translate-y-1/2 opacity-[0.09] md:right-10 md:w-[330px]"
         />
-        <div className="relative mx-auto max-w-conteudo px-5 py-20 md:px-10 md:py-28">
+        <Emenda cor="papel" posicao="base" altura={118} />
+
+        <div className="relative mx-auto max-w-conteudo px-5 pb-24 pt-16 md:px-10 md:pb-32 md:pt-28">
           <nav
             aria-label="Você está aqui"
             className="rotulo rotulo--fino text-mute-esc"
@@ -100,8 +103,9 @@ export default function PaginaCategoria({ params }: Props) {
         )}
       </section>
 
-      <section className="border-t borda-sutil bg-papel-alto">
-        <div className="mx-auto flex max-w-conteudo flex-col gap-8 px-5 py-16 md:flex-row md:items-center md:justify-between md:px-10">
+      <section className="relative bg-papel-alto">
+        <Emenda cor="papel" altura={110} />
+        <div className="relative mx-auto flex max-w-conteudo flex-col gap-8 px-5 py-16 md:flex-row md:items-center md:justify-between md:px-10">
           <div>
             <p className="sobrancelha">Continue navegando</p>
             <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3">
