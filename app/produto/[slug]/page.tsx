@@ -219,8 +219,10 @@ export default function PaginaProduto({ params }: Props) {
         )}
       </div>
 
-      {/* CTA sempre visivel no mobile */}
-      <div className="sticky bottom-0 z-40 border-t borda-sutil bg-papel/95 backdrop-blur-md lg:hidden">
+      {/* CTA sempre visivel no mobile. Fundo opaco de proposito: com
+          backdrop-blur aqui, a camada de grao (fixed + multiply) recompoe a
+          tela inteira a cada quadro e o Speed Index desaba. */}
+      <div className="sticky bottom-0 z-40 border-t borda-sutil bg-papel lg:hidden">
         <div className="flex items-center gap-4 px-5 py-3">
           <div className="min-w-0">
             <p className="truncate text-xs text-mute-papel">{produto.nome}</p>
