@@ -21,7 +21,9 @@
   --mute-papel: #4a554f; /* secundário no papel — 6.4:1 */
   --mute-esc: #a7bcb2; /* secundário na floresta — 8.4:1 */
 
-  --fs-micro: clamp(0.67rem, 1.05vw, 0.76rem);
+  /* Piso de 12px: abaixo disso o Lighthouse reprova legibilidade.
+     O site principal usa .67rem; a diferenca e imperceptivel. */
+  --fs-micro: clamp(0.75rem, 1.05vw, 0.8rem);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 
   --grao: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");

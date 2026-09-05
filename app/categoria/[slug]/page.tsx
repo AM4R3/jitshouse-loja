@@ -66,7 +66,14 @@ export default function PaginaCategoria({ params }: Props) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-conteudo px-5 py-14 md:px-10 md:py-20">
+      <section
+        aria-labelledby="lista"
+        className="mx-auto max-w-conteudo px-5 py-14 md:px-10 md:py-20"
+      >
+        {/* Nivel intermediario entre o h1 da categoria e os h3 dos cards. */}
+        <h2 id="lista" className="sr-only">
+          Peças de {categoria.nome}
+        </h2>
         {lista.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {lista.map((p, i) => (

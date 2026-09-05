@@ -22,7 +22,6 @@ export default function Header() {
       <div className="mx-auto flex h-[66px] max-w-conteudo items-center gap-6 px-5 md:px-10">
         <Link
           href="/"
-          aria-label="Jitshouse Loja — início"
           className="mr-auto flex items-center gap-2.5"
           onClick={() => setAberto(false)}
         >
