@@ -126,7 +126,7 @@ export default function PaginaProduto({ params }: Props) {
                       src={src}
                       alt=""
                       fill
-                      sizes="20vw"
+                      sizes="(max-width: 1024px) 22vw, 12vw"
                       className="object-contain"
                     />
                   </li>
