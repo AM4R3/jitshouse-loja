@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --papel: #f3eee3;
+  --papel-2: #eae2d2;
+  --tinta: #171410;
+  --ouro: #b9892f;
+  --ouro-claro: #d2ac5c;
+  --cinza: #6e675c;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--papel);
+    color: var(--tinta);
+    font-family: var(--fonte-corpo), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--ouro-claro);
+    color: var(--tinta);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ouro);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Rótulos e botões: caixa alta, tracking largo, sem raio. */
+  .rotulo {
+    @apply font-sans text-[0.6875rem] uppercase tracking-label;
+  }
+
+  .botao {
+    @apply rotulo inline-flex items-center justify-center gap-2 border px-7 py-4 font-medium transition-colors duration-200;
+  }
+
+  /* Texto tinta sobre ouro: 5.8:1. Papel sobre ouro daria 2.7:1 e reprovaria em contraste. */
+  .botao-ouro {
+    @apply botao border-ouro bg-ouro text-tinta hover:border-tinta hover:bg-tinta hover:text-ouro-claro;
+  }
+
+  .botao-tinta {
+    @apply botao border-tinta bg-tinta text-papel hover:bg-transparent hover:text-tinta;
+  }
+
+  .botao-contorno {
+    @apply botao border-tinta bg-transparent text-tinta hover:bg-tinta hover:text-papel;
+  }
+
+  .botao-contorno-claro {
+    @apply botao border-papel/40 bg-transparent text-papel hover:bg-papel hover:text-tinta;
+  }
+
+  /*
+   * Sobrancelha de seção. O ouro da paleta não alcança 4.5:1 sobre o papel,
+   * então o texto vai em tinta e o ouro entra como filete — o acento
+   * continua lá, sem custo de legibilidade. Em fundo tinta, use
+   * `.rotulo text-ouro-claro` direto (8.6:1).
+   */
+  .sobrancelha {
+    @apply rotulo flex items-center gap-3 text-tinta;
+  }
+
+  .sobrancelha::before {
+    content: '';
+    width: 1.75rem;
+    height: 1px;
+    background-color: var(--ouro);
+  }
+
+  /* Títulos display; palavras-chave em itálico via <em>. */
+  .display {
+    @apply font-display font-normal leading-[1.05] tracking-[-0.01em];
+  }
+}
+
+@layer utilities {
+  .borda-sutil {
+    border-color: rgb(23 20 16 / 0.12);
+  }
+}
+
+/* O logo da loja é um wordmark chapado com alpha: usamos como máscara
+   para pintá-lo em qualquer cor da paleta sem sair da identidade. */
+.logo-mascara {
+  display: block;
+  background-color: currentColor;
+  -webkit-mask-image: url('/marca/logo.webp');
+  mask-image: url('/marca/logo.webp');
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}

@@ -1,0 +1,260 @@
+[
+  {
+    "slug": "kimono-branco-jits-house",
+    "nome": "Kimono Branco – Jits House",
+    "preco": 480,
+    "precoDe": 530,
+    "descricao": "Kimono Branco Jits House, um kimono que combina tradição e modernidade para elevar seu estilo. Confeccionado com tecido de alta qualidade, este kimono é leve, confortável e perfeito para diversas ocasiões. Seu design clean e sofisticado destaca-se pela pureza do branco, transmitindo serenidade e elegância",
+    "descricaoPendente": false,
+    "imagem": "/produtos/kimono-branco-jits-house.webp",
+    "galeria": [
+      "/produtos/kimono-branco-jits-house.webp",
+      "/produtos/kimono-branco-jits-house-2.webp",
+      "/produtos/kimono-branco-jits-house-3.webp",
+      "/produtos/kimono-branco-jits-house-4.webp"
+    ],
+    "categoria": "kimonos",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/kimono-branco-jits-house/"
+  },
+  {
+    "slug": "kimono-branco-kids-jits-house",
+    "nome": "Kimono Branco Kids – Jits House",
+    "preco": 320,
+    "precoDe": 380,
+    "descricao": "Kimono Branco Jits House, um kimono que combina tradição e modernidade para elevar seu estilo. Confeccionado com tecido de alta qualidade, este kimono é leve, confortável e perfeito para diversas ocasiões. Seu design clean e sofisticado destaca-se pela pureza do branco, transmitindo serenidade e elegância.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/kimono-branco-kids-jits-house.webp",
+    "galeria": [
+      "/produtos/kimono-branco-kids-jits-house.webp",
+      "/produtos/kimono-branco-kids-jits-house-2.webp",
+      "/produtos/kimono-branco-kids-jits-house-3.webp"
+    ],
+    "categoria": "kimonos",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/kimono-branco-kids-jits-house/"
+  },
+  {
+    "slug": "faixa-jits-house",
+    "nome": "Faixa Jits House",
+    "preco": 60,
+    "precoDe": null,
+    "descricao": "A Faixa Jits House é nos padrões da CBJJ e IBJJF, a escolha ideal para os praticantes dedicados dessa arte marcial fascinante. Confeccionadas com materiais de alta qualidade e resistência, nossas faixas oferecem durabilidade e conforto durante os treinos e competições.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/faixa-jits-house.webp",
+    "galeria": [
+      "/produtos/faixa-jits-house.webp",
+      "/produtos/faixa-jits-house-2.webp"
+    ],
+    "categoria": "kimonos",
+    "emEstoque": true,
+    "tag": null,
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/faixa-jits-house/"
+  },
+  {
+    "slug": "camiseta-jiujitsu-house-lifestyle-preta",
+    "nome": "Camiseta JiuJitsu House Lifestyle – Preta",
+    "preco": 80,
+    "precoDe": null,
+    "descricao": "Explore o lifestyle do Jiu Jitsu com nossa Camiseta Jiu Jitsu House. Em preto clássico, esta peça incorpora a essência da arte marcial com estilo e atitude. Sinta-se em casa no mundo do Jiu Jitsu, onde a determinação se encontra com o conforto, e faça uma declaração de moda que transcende os tatames.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/camiseta-jiujitsu-house-lifestyle-preta.webp",
+    "galeria": [
+      "/produtos/camiseta-jiujitsu-house-lifestyle-preta.webp",
+      "/produtos/camiseta-jiujitsu-house-lifestyle-preta-2.webp",
+      "/produtos/camiseta-jiujitsu-house-lifestyle-preta-3.webp"
+    ],
+    "categoria": "vestuario",
+    "emEstoque": true,
+    "tag": null,
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/camiseta-jiujitsu-house-lifestyle-preta/"
+  },
+  {
+    "slug": "camiseta-jits-house-cinza",
+    "nome": "Camiseta Jits House Cinza",
+    "preco": 80,
+    "precoDe": null,
+    "descricao": "Desperte seu espírito guerreiro com nossa Camiseta Cinza de Jiu Jitsu. O tom neutro reflete a seriedade do treinamento, enquanto o design elegante incorpora elementos da arte marcial. Confortável e estilosa, esta camiseta é a escolha perfeita para expressar sua paixão pelo Jiu Jitsu com autenticidade.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/camiseta-jits-house-cinza.webp",
+    "galeria": [
+      "/produtos/camiseta-jits-house-cinza.webp",
+      "/produtos/camiseta-jits-house-cinza-2.webp",
+      "/produtos/camiseta-jits-house-cinza-3.webp"
+    ],
+    "categoria": "vestuario",
+    "emEstoque": true,
+    "tag": null,
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/camiseta-jits-house-cinza/"
+  },
+  {
+    "slug": "camiseta-jiu-jitsu-praia-do-rosa-azul",
+    "nome": "Camiseta Jiu Jitsu Praia do Rosa – Azul",
+    "preco": 80,
+    "precoDe": null,
+    "descricao": "Celebre a sua jornada no Jiu Jitsu com nossa Camiseta Azul inspirada na energia da Praia do Rosa. Com um toque de elegância costeira, essa peça combina o azul vibrante com elementos sutis da natureza. Perfeita para expressar seu estilo único enquanto mantém o foco nas técnicas do Jiu Jitsu.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/camiseta-jiu-jitsu-praia-do-rosa-azul.webp",
+    "galeria": [
+      "/produtos/camiseta-jiu-jitsu-praia-do-rosa-azul.webp",
+      "/produtos/camiseta-jiu-jitsu-praia-do-rosa-azul-2.webp",
+      "/produtos/camiseta-jiu-jitsu-praia-do-rosa-azul-3.webp"
+    ],
+    "categoria": "vestuario",
+    "emEstoque": true,
+    "tag": null,
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/camiseta-jiu-jitsu-praia-do-rosa-azul/"
+  },
+  {
+    "slug": "camiseta-siga-em-frente-sempre-verde",
+    "nome": "Camiseta Siga Em Frente Sempre – Verde",
+    "preco": 80,
+    "precoDe": null,
+    "descricao": "Embrace a positividade com nossa Camiseta “Siga Em Frente Sempre”. A cor vibrante simboliza esperança, enquanto a mensagem inspiradora destaca sua determinação. Esta peça não é apenas uma camiseta, mas uma declaração de motivação para enfrentar desafios com resiliência e seguir em frente, sempre.",
+    "descricaoPendente": false,
+    "imagem": "/produtos/camiseta-siga-em-frente-sempre-verde.webp",
+    "galeria": [
+      "/produtos/camiseta-siga-em-frente-sempre-verde.webp",
+      "/produtos/camiseta-siga-em-frente-sempre-verde-2.webp",
+      "/produtos/camiseta-siga-em-frente-sempre-verde-3.webp"
+    ],
+    "categoria": "vestuario",
+    "emEstoque": true,
+    "tag": null,
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/camiseta-siga-em-frente-sempre-verde/"
+  },
+  {
+    "slug": "oculos-jits-house-1",
+    "nome": "Óculos Jits House – 1",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-1.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-1.webp",
+      "/produtos/oculos-jits-house-1-2.webp",
+      "/produtos/oculos-jits-house-1-3.webp",
+      "/produtos/oculos-jits-house-1-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-1/"
+  },
+  {
+    "slug": "oculos-jits-house-2",
+    "nome": "Óculos Jits House – 2",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-2.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-2.webp",
+      "/produtos/oculos-jits-house-2-2.webp",
+      "/produtos/oculos-jits-house-2-3.webp",
+      "/produtos/oculos-jits-house-2-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-2/"
+  },
+  {
+    "slug": "oculos-jits-house-3",
+    "nome": "Óculos Jits House – 3",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-3.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-3.webp",
+      "/produtos/oculos-jits-house-3-2.webp",
+      "/produtos/oculos-jits-house-3-3.webp",
+      "/produtos/oculos-jits-house-3-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-3/"
+  },
+  {
+    "slug": "oculos-jits-house-4",
+    "nome": "Óculos Jits House – 4",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-4.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-4.webp",
+      "/produtos/oculos-jits-house-4-2.webp",
+      "/produtos/oculos-jits-house-4-3.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-4/"
+  },
+  {
+    "slug": "oculos-jits-house-5",
+    "nome": "Óculos Jits House – 5",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-5.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-5.webp",
+      "/produtos/oculos-jits-house-5-2.webp",
+      "/produtos/oculos-jits-house-5-3.webp",
+      "/produtos/oculos-jits-house-5-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-5/"
+  },
+  {
+    "slug": "oculos-jits-house-6",
+    "nome": "Óculos Jits House – 6",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-6.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-6.webp",
+      "/produtos/oculos-jits-house-6-2.webp",
+      "/produtos/oculos-jits-house-6-3.webp",
+      "/produtos/oculos-jits-house-6-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-6/"
+  },
+  {
+    "slug": "oculos-jits-house-7",
+    "nome": "Óculos Jits House – 7",
+    "preco": 99.9,
+    "precoDe": 149,
+    "descricao": "",
+    "descricaoPendente": true,
+    "imagem": "/produtos/oculos-jits-house-7.webp",
+    "galeria": [
+      "/produtos/oculos-jits-house-7.webp",
+      "/produtos/oculos-jits-house-7-2.webp",
+      "/produtos/oculos-jits-house-7-3.webp",
+      "/produtos/oculos-jits-house-7-4.webp"
+    ],
+    "categoria": "acessorios",
+    "emEstoque": true,
+    "tag": "Oferta",
+    "linkInfinitePay": "https://loja.jitshouse.com.br/produto/oculos-jits-house-7/"
+  }
+]
