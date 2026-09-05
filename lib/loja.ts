@@ -14,7 +14,8 @@ export type Produto = {
   categoria: Categoria
   emEstoque: boolean
   tag: string | null
-  linkInfinitePay: string
+  /** URL da peça na Shopify. `null` enquanto a loja nova não está no ar. */
+  linkCompra: string | null
 }
 
 export const produtos = produtosJson as Produto[]

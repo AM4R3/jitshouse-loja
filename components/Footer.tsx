@@ -4,7 +4,6 @@ import {
   EMAIL,
   INSTAGRAM,
   INSTAGRAM_URL,
-  LOJA_ATUAL,
   SITE_IMERSOES,
   WHATSAPP_EXIBICAO,
   linkWhatsApp,
@@ -47,16 +46,6 @@ export default function Footer() {
               <Link href="/categoria/acessorios" className={ELO}>
                 Acessórios
               </Link>
-            </li>
-            <li>
-              <a
-                href={LOJA_ATUAL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={ELO}
-              >
-                Meus pedidos ↗
-              </a>
             </li>
           </ul>
         </nav>
@@ -109,6 +98,16 @@ export default function Footer() {
         <p className="rotulo rotulo--fino mx-auto max-w-conteudo px-5 py-6 text-mute-esc md:px-10">
           © 2026 Jitshouse Lifestyle · Praia do Rosa, Imbituba — SC · Viva o Jiu
           Jitsu. Viva o Lifestyle.
+        </p>
+        <p className="mx-auto max-w-conteudo px-5 pb-6 text-mute-esc md:px-10">
+          <a
+            href="https://www.instagram.com/baruc.amare/"
+            target="_blank"
+            rel="noopener"
+            className="site-credit"
+          >
+            feito por @baruc.amare
+          </a>
         </p>
       </div>
     </footer>

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Marca } from './Marca'
-import { CARRINHO_ATUAL, SITE_IMERSOES } from '@/lib/contato'
+import { LOJA_SHOPIFY, SITE_IMERSOES, linkWhatsApp } from '@/lib/contato'
 
 const LINKS = [
   { href: '/categoria/kimonos', rotulo: 'Kimonos' },
@@ -48,13 +48,17 @@ export default function Header() {
           </a>
         </nav>
 
+        {/* Enquanto a Shopify não sobe, o pedido acontece no WhatsApp. */}
         <a
-          href={CARRINHO_ATUAL}
+          href={
+            LOJA_SHOPIFY ||
+            linkWhatsApp('Olá! Vim pela loja da Jitshouse e quero fazer um pedido.')
+          }
           target="_blank"
           rel="noopener noreferrer"
           className="btn btn--solido btn--peq"
         >
-          Carrinho
+          {LOJA_SHOPIFY ? 'Carrinho' : 'Pedir'}
         </a>
 
         <button

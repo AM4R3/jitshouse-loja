@@ -6,9 +6,12 @@ import { Brasao } from '@/components/Marca'
 import ProdutoCard from '@/components/ProdutoCard'
 import { CATEGORIAS, produtoPorSlug, produtos, relacionados } from '@/lib/loja'
 import { parcelamento, precoBRL } from '@/lib/formato'
-import { linkWhatsApp } from '@/lib/contato'
+import { LOJA_SHOPIFY, linkWhatsApp } from '@/lib/contato'
 
 type Props = { params: { slug: string } }
+
+const URL_SITE =
+  process.env.NEXT_PUBLIC_URL_SITE ?? 'https://jitshouse-loja.vercel.app'
 
 export function generateStaticParams() {
   return produtos.map((p) => ({ slug: p.slug }))
@@ -49,6 +52,10 @@ export default function PaginaProduto({ params }: Props) {
   const sugestoes = relacionados(produto, 4)
   const mensagem = `Olá! Tenho interesse em: ${produto.nome} (${precoBRL(produto.preco)}). Ainda está disponível?`
 
+  /* Shopify quando existir; até lá, o pedido fecha no WhatsApp. */
+  const linkCompra = produto.linkCompra || LOJA_SHOPIFY || linkWhatsApp(mensagem)
+  const compraNoWhatsApp = !produto.linkCompra && !LOJA_SHOPIFY
+
   const dadosEstruturados = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -63,7 +70,7 @@ export default function PaginaProduto({ params }: Props) {
       availability: produto.emEstoque
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
-      url: produto.linkInfinitePay,
+      url: `${URL_SITE}/produto/${produto.slug}`,
     },
   }
 
@@ -171,26 +178,29 @@ export default function PaginaProduto({ params }: Props) {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href={produto.linkInfinitePay}
+                href={linkCompra}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn--ouro flex-1"
               >
-                Comprar
+                {compraNoWhatsApp ? 'Comprar pelo WhatsApp' : 'Comprar'}
               </a>
-              <a
-                href={linkWhatsApp(mensagem)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--linha flex-1"
-              >
-                Falar no WhatsApp
-              </a>
+              {!compraNoWhatsApp && (
+                <a
+                  href={linkWhatsApp(mensagem)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--linha flex-1"
+                >
+                  Falar no WhatsApp
+                </a>
+              )}
             </div>
 
             <p className="mt-4 text-xs text-mute-papel">
-              A compra é finalizada na loja oficial da Jitshouse, em uma nova
-              aba.
+              {compraNoWhatsApp
+                ? 'O pedido é fechado direto com a gente no WhatsApp: a gente confirma tamanho, frete e forma de pagamento.'
+                : 'A compra é finalizada na loja da Jitshouse, em uma nova aba.'}
             </p>
 
             <dl className="mt-10 grid border borda-sutil bg-papel-alto sm:grid-cols-3">
@@ -231,7 +241,7 @@ export default function PaginaProduto({ params }: Props) {
             </p>
           </div>
           <a
-            href={produto.linkInfinitePay}
+            href={linkCompra}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn--ouro ml-auto shrink-0 px-6 py-3.5"

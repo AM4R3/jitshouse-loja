@@ -190,6 +190,22 @@
   }
 }
 
+/* Crédito de autoria no rodapé. */
+.site-credit {
+  display: inline-block;
+  font-size: 11px;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.3;
+  letter-spacing: 0.02em;
+  transition: opacity 0.3s ease;
+  padding: 6px 0;
+}
+.site-credit:hover,
+.site-credit:focus-visible {
+  opacity: 0.8;
+}
+
 @layer utilities {
   .borda-sutil {
     border-color: rgb(0 64 48 / 0.18);

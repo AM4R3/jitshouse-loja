@@ -3,9 +3,14 @@
 E-commerce vitrine da **Jitshouse Lifestyle** (Praia do Rosa, Imbituba — SC).
 Next.js 14 (App Router) + Tailwind, 100% estático.
 
-Nesta primeira versão o catálogo é vitrine: o botão **Comprar** de cada peça
-abre a página do produto na loja oficial atual (`loja.jitshouse.com.br`), onde
-a compra é finalizada.
+Nesta primeira versão o catálogo é vitrine. **Nada aponta mais para a loja
+antiga** (`loja.jitshouse.com.br`) — o checkout vai para a Shopify. Enquanto
+ela não sobe, todo CTA de compra cai no WhatsApp, que é o canal de venda real
+hoje.
+
+Para ligar a Shopify: preencha `LOJA_SHOPIFY` em `lib/contato.ts` com a URL da
+loja e, se houver link por peça, o campo `linkCompra` de cada item em
+`data/produtos.json`. Os botões trocam de destino e de texto sozinhos.
 
 ## Deploy na Vercel — 3 comandos
 
@@ -48,7 +53,7 @@ components/                 Header, Footer, Marca, ProdutoCard
 lib/
   loja.ts                   leitura do catálogo, categorias, relacionados
   formato.ts                preço e parcelamento
-  contato.ts                WhatsApp, e-mail, Instagram, links externos
+  contato.ts                WhatsApp, e-mail, Instagram, LOJA_SHOPIFY
 data/produtos.json          catálogo (fonte única de verdade)
 public/produtos/            fotos dos produtos (.webp)
 public/marca/brasao-*.webp  brasão da marca (mesmo do site principal)
@@ -82,7 +87,7 @@ saem todas dele. Campos por item:
 | `categoria`       | `kimonos` \| `vestuario` \| `acessorios`                    |
 | `emEstoque`       | mostra o selo "Esgotado" quando `false`                     |
 | `tag`             | etiqueta ouro no card (`"Oferta"` ou `null`)                |
-| `linkInfinitePay` | destino do botão Comprar                                    |
+| `linkCompra`      | URL da peça na Shopify; `null` cai no WhatsApp               |
 
 Ao trocar o brasão, rode `node scripts/gerar-marca.mjs` para regerar OG image
 e favicons.
