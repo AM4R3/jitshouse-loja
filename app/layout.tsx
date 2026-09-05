@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     template: '%s — Jitshouse Loja',
   },
   description:
-    'A loja oficial da Jitshouse Lifestyle. Kimonos, faixas, vestuário e acessórios feitos na Praia do Rosa, Imbituba — SC.',
+    'A loja oficial da Jitshouse. Kimonos, faixas, vestuário e acessórios feitos na Praia do Rosa, Imbituba — SC.',
   keywords: [
     'jiu jitsu',
     'kimono',
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: 'Jitshouse Loja',
     title: 'Jitshouse Loja — Viva o Jiu Jitsu. Viva o Lifestyle.',
     description:
-      'A loja oficial da Jitshouse Lifestyle. Kimonos, faixas, vestuário e acessórios da Praia do Rosa.',
+      'A loja oficial da Jitshouse. Kimonos, faixas, vestuário e acessórios da Praia do Rosa.',
   },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },

@@ -41,7 +41,7 @@ export default function Home() {
           <Brasao claro decorativo className="mb-7 w-[74px] md:w-[86px]" />
 
           <p className="rotulo mb-5 text-ouro">
-            A loja oficial da Jitshouse Lifestyle
+            A loja oficial da Jitshouse
           </p>
 
           <h1 className="display display--claro max-w-[14ch] text-[clamp(2.8rem,8.5vw,6.5rem)]">
