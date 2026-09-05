@@ -44,8 +44,8 @@ export default function Home() {
             A loja oficial da Jitshouse Lifestyle
           </p>
 
-          <h1 className="display display--claro max-w-[16ch] text-[clamp(2.8rem,8.5vw,6.5rem)]">
-            O tatame é só o começo. <em>Vista o lifestyle.</em>
+          <h1 className="display display--claro max-w-[14ch] text-[clamp(2.8rem,8.5vw,6.5rem)]">
+            Vista o <em>lifestyle.</em>
           </h1>
 
           <p className="mt-6 max-w-[46ch] text-[clamp(1rem,1.7vw,1.2rem)] text-papel/95">
@@ -79,9 +79,11 @@ export default function Home() {
           </Link>
         </div>
 
+        {/* Sem `prioridade`: a foto do hero e o unico LCP da home e nao pode
+            dividir banda com a vitrine, que fica abaixo da dobra. */}
         <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {vitrine.map((p, i) => (
-            <ProdutoCard key={p.slug} produto={p} prioridade={i < 4} />
+          {vitrine.map((p) => (
+            <ProdutoCard key={p.slug} produto={p} />
           ))}
         </div>
       </section>
